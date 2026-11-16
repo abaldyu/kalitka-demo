@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Калитка — пекарня и кофейня в Петрозаводске</title>
+<meta name="description" content="Карельские калитки, свежая выпечка с 7 утра, завтраки и кофе. Бронь стола онлайн.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F0E6; --bg-2:#EFE6D8; --card:#FFFBF4; --ink:#2A211B; --ink-2:#6B5D52;
+  --berry:#A8322B; --berry-ink:#fff; --forest:#2F4A3A; --line:#E2D6C4;
+  --shadow:0 18px 40px -22px rgba(60,40,20,.35);
+  --r:14px; --max:1120px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1C1714; --bg-2:#241E1A; --card:#2A231E; --ink:#EDE4D8; --ink-2:#B8A999;
+    --berry:#D9574D; --forest:#7FA58C; --line:#3A312A; --shadow:0 18px 40px -22px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1C1714; --bg-2:#241E1A; --card:#2A231E; --ink:#EDE4D8; --ink-2:#B8A999;
+  --berry:#D9574D; --forest:#7FA58C; --line:#3A312A; --shadow:0 18px 40px -22px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased;padding-bottom:72px}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:"Playfair Display",Georgia,serif;font-weight:700;line-height:1.1}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+.eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--berry);font-weight:700}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;font-weight:700;text-decoration:none;border:0;cursor:pointer;font:inherit;font-weight:700;transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn-berry{background:var(--berry);color:var(--berry-ink)}
+.btn-ghost{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.5);backdrop-filter:blur(6px)}
+
+/* шапка */
+header{position:fixed;inset:0 0 auto;z-index:20;transition:background .3s,box-shadow .3s}
+header.solid{background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:"Playfair Display",serif;font-size:24px;font-weight:700;text-decoration:none;color:#fff;display:flex;align-items:center;gap:10px}
+header.solid .logo{color:var(--ink)}
+.logo svg{width:30px;height:30px}
+nav.desk{display:none}
+.burger{width:44px;height:44px;border:0;background:none;color:#fff;cursor:pointer}
+header.solid .burger{color:var(--ink)}
+.drawer{position:fixed;inset:64px 0 auto;background:var(--bg);padding:12px 20px 24px;display:none;flex-direction:column;box-shadow:var(--shadow)}
+.drawer.open{display:flex}
+.drawer a{padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none;font-weight:500;font-size:18px}
+
+/* первый экран */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;color:#fff;isolation:isolate}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(20,12,8,.55) 0%,rgba(20,12,8,.15) 35%,rgba(20,12,8,.85) 100%)}
+.hero .wrap{padding-bottom:120px;padding-top:110px;width:100%}
+.hero h1{font-size:clamp(52px,14vw,120px);letter-spacing:-.02em}
+.hero h1 i{display:block;font-weight:500;color:#F2C9A0;font-size:.6em;margin-top:6px}
+.hero p.lead{font-size:18px;max-width:520px;margin:14px 0 24px;color:#F3E9DE}
+.hero .actions{display:flex;flex-wrap:wrap;gap:12px}
+.status{display:inline-flex;align-items:center;gap:8px;font-size:14px;background:rgba(0,0,0,.35);padding:6px 12px;border-radius:999px;margin-bottom:18px;backdrop-filter:blur(6px)}
+.dot{width:8px;height:8px;border-radius:50%;background:#7BD88F;box-shadow:0 0 0 4px rgba(123,216,143,.25)}
+.dot.off{background:#E07A6E;box-shadow:0 0 0 4px rgba(224,122,110,.25)}
+.facts{display:flex;gap:22px;margin-top:28px;font-size:14px;color:#E9DCCD;flex-wrap:wrap}
+.facts b{display:block;font-family:"Playfair Display",serif;font-size:26px;color:#fff}
+
+section{padding:76px 0}
+.sec-head{margin-bottom:32px}
+.sec-head h2{font-size:clamp(34px,7vw,54px);margin-top:8px}
+
+/* о нас */
+.about{display:grid;gap:28px}
+.about .photo{border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);aspect-ratio:4/3}
+.about .photo img{width:100%;height:100%;object-fit:cover}
+.about p{color:var(--ink-2);font-size:17px}
+.perks{display:grid;gap:14px;margin-top:22px}
+.perk{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.perk svg{flex:none;width:28px;height:28px;color:var(--berry)}
+.perk b{display:block}
+.perk span{color:var(--ink-2);font-size:15px}
+
+/* хиты */
+.hits{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:40px}
+.hit{background:var(--card);border-radius:var(--r);overflow:hidden;border:1px solid var(--line)}
+.hit img{aspect-ratio:1;object-fit:cover;width:100%}
+.hit div{padding:12px 14px}
+.hit b{display:block;font-size:15px;line-height:1.3}
+.hit span{color:var(--berry);font-weight:700}
+
+/* меню */
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:20px;scrollbar-width:none}
+.tabs button{flex:none;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);font:inherit;font-weight:500;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--forest);border-color:var(--forest);color:#fff}
+.menu-list{list-style:none;display:none}
+.menu-list.on{display:block}
+.menu-list li{display:flex;align-items:baseline;gap:10px;padding:14px 0;border-bottom:1px dashed var(--line)}
+.menu-list .n{font-weight:700}
+.menu-list small{display:block;color:var(--ink-2);font-size:14px;font-weight:400}
+.menu-list .fill{flex:1}
+.menu-list .p{font-family:"Playfair Display",serif;font-size:20px;white-space:nowrap}
+.menu-list li.out{opacity:.5}
+.menu-list li.out .p{text-decoration:line-through}
+.tag{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--berry);margin-left:6px}
+
+/* галерея */
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.gallery img{border-radius:10px;aspect-ratio:1;object-fit:cover;width:100%}
+.gallery img:first-child{grid-column:span 2;aspect-ratio:16/9}
+
+/* отзывы */
+.reviews{display:grid;gap:14px}
+.rev{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.stars{color:#E0A13A;letter-spacing:2px}
+.rev p{margin:10px 0 12px}
+.rev b{font-size:14px}
+.rev span{color:var(--ink-2);font-size:14px}
+.note{font-size:14px;color:var(--ink-2);margin-top:14px}
+
+/* бронь */
+.book{background:var(--forest);color:#F1EBE2;border-radius:24px;padding:32px 22px}
+.book h2{color:#fff}
+.book .eyebrow{color:#F2C9A0}
+form{display:grid;gap:12px;margin-top:22px}
+label{font-size:14px;display:grid;gap:6px}
+input,select{min-height:50px;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;padding:0 14px;font:inherit;font-size:16px}
+input::placeholder{color:rgba(255,255,255,.55)}
+select option{color:#222}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ok{display:none;background:rgba(255,255,255,.1);border-radius:12px;padding:16px;margin-top:6px}
+.ok.show{display:block}
+
+/* контакты */
+.contacts{display:grid;gap:22px}
+.c-list{display:grid;gap:16px}
+.c-list div{display:flex;gap:12px}
+.c-list svg{flex:none;width:22px;height:22px;color:var(--berry);margin-top:3px}
+.c-list span{color:var(--ink-2);display:block;font-size:14px}
+.map{border-radius:var(--r);overflow:hidden;min-height:300px;border:1px solid var(--line);background:var(--bg-2)}
+.map iframe{width:100%;height:100%;min-height:300px;border:0;display:block}
+.socials{display:flex;gap:10px;margin-top:6px}
+.socials a{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--card);border:1px solid var(--line);text-decoration:none;font-weight:700;font-size:14px}
+
+footer{padding:36px 0 28px;color:var(--ink-2);font-size:14px;border-top:1px solid var(--line)}
+
+/* нижняя панель на телефоне */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:repeat(3,1fr);background:var(--card);border-top:1px solid var(--line);padding:8px 8px calc(8px + env(safe-area-inset-bottom))}
+.dock a{display:grid;place-items:center;gap:2px;min-height:52px;text-decoration:none;font-size:12px;font-weight:700;border-radius:12px}
+.dock a svg{width:22px;height:22px}
+.dock a.main{background:var(--berry);color:#fff}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media (min-width:760px){
+  body{padding-bottom:0}
+  .dock{display:none}
+  .burger,.drawer{display:none!important}
+  nav.desk{display:flex;gap:28px;align-items:center}
+  nav.desk a{text-decoration:none;color:#fff;font-weight:500}
+  header.solid nav.desk a{color:var(--ink)}
+  header.solid nav.desk a.btn{color:#fff}
+  nav.desk .btn{min-height:42px;color:#fff}
+  .about{grid-template-columns:1.05fr 1fr;align-items:center;gap:56px}
+  .perks{grid-template-columns:1fr}
+  .hits{grid-template-columns:repeat(4,1fr)}
+  .gallery{grid-template-columns:repeat(4,1fr)}
+  .gallery img:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:auto;height:100%}
+  .reviews{grid-template-columns:repeat(3,1fr)}
+  .book{padding:56px;display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:center}
+  .book form{margin-top:0}
+  .contacts{grid-template-columns:1fr 1.4fr}
+  .hero .wrap{padding-bottom:88px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .btn{transition:none}
+}
+</style>
+</head>
+<body>
+
+<header id="top">
+  <div class="wrap bar">
+    <a class="logo" href="#top" aria-label="Калитка — на главную">
+      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 18c2-6 8-10 12-10s10 4 12 10c-3 3-7 5-12 5S7 21 4 18z"/><path d="M8 17c1.5 1 3 1 4 0s2.5-1 4 0 2.5 1 4 0 2.5-1 4 0" stroke-linecap="round"/></svg>
+      Калитка
+    </a>
+    <nav class="desk" aria-label="Разделы">
+      <a href="#menu">Меню</a><a href="#about">О нас</a><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a>
+      <a class="btn btn-berry" href="#book">Забронировать</a>
+    </nav>
+    <button class="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="drawer">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+  <div class="drawer" id="drawer">
+    <a href="#menu">Меню</a><a href="#about">О нас</a><a href="#reviews">Отзывы</a><a href="#book">Бронь стола</a><a href="#contacts">Контакты</a>
+  </div>
+</header>
+
+<main>
+<section class="hero" style="padding:0">
+  <img src="img/hero.jpg" alt="Зал кофейни с лампами над деревянным столом" fetchpriority="high">
+  <div class="wrap">
+    <div class="status"><span class="dot" id="dot"></span><span id="open-text">Открыто</span></div>
+    <h1>Калитка<i>печём с 7 утра</i></h1>
+    <p class="lead">Карельские калитки, круассаны, сытные завтраки и хороший кофе. Уютно, тепло и рядом с набережной.</p>
+    <div class="actions">
+      <a class="btn btn-berry" href="#book">Забронировать стол</a>
+      <a class="btn btn-ghost" href="#menu">Смотреть меню</a>
+    </div>
+    <div class="facts">
+      <div><b>4,9 ★</b>на Яндекс Картах</div>
+      <div><b>12</b>видов выпечки</div>
+      <div><b>с 7:00</b>каждый день</div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about">
+    <div class="photo reveal"><img src="img/people.jpg" alt="Гости в зале кофейни" loading="lazy"></div>
+    <div class="reveal">
+      <p class="eyebrow">О нас</p>
+      <h2 style="font-size:clamp(34px,7vw,54px);margin:8px 0 16px">Маленькая пекарня с большим духовым шкафом</h2>
+      <p>Мы печём каждое утро прямо в зале, поэтому у нас всегда пахнет тестом и корицей. Калитки — по карельскому рецепту на ржаной муке, круассаны — на настоящем сливочном масле.</p>
+      <div class="perks">
+        <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b>Свежее с 7:00</b><span>Первая выпечка выходит к открытию</span></div></div>
+        <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 11h12a3 3 0 0 1 0 6h-1M5 11v5a4 4 0 0 0 4 4h3a4 4 0 0 0 4-4v-5M8 4v3M12 4v3"/></svg><div><b>Кофе с собой</b><span>Скидка 10% со своей кружкой</span></div></div>
+        <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10h16v9a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zM4 10l2-5h12l2 5M9 14h6"/></svg><div><b>Предзаказ к празднику</b><span>Пироги и калитки от 12 штук за сутки</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="menu" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="sec-head reveal"><p class="eyebrow">Меню</p><h2>Что у нас вкусного</h2></div>
+    <div class="hits reveal" id="hits"></div>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div id="lists"></div>
+    <p class="note" id="menu-note">Цены и наличие обновляются автоматически.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal"><p class="eyebrow">Атмосфера</p><h2>Заходите погреться</h2></div>
+    <div class="gallery reveal">
+      <img src="img/vitrine.jpg" alt="Витрина с выпечкой" loading="lazy">
+      <img src="img/breads.jpg" alt="Кофе и выпечка на столе" loading="lazy">
+      <img src="img/window.jpg" alt="Столик у окна с лампой" loading="lazy">
+      <img src="img/espresso.jpg" alt="Чашка эспрессо" loading="lazy">
+      <img src="img/hero.jpg" alt="Зал кофейни" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section id="reviews" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="sec-head reveal"><p class="eyebrow">Отзывы</p><h2>Что говорят гости</h2></div>
+    <div class="reviews reveal">
+      <div class="rev"><div class="stars">★★★★★</div><p>Калитки как у бабушки в деревне. Беру домой по дюжине каждые выходные.</p><b>Марина</b> <span>· Яндекс Карты</span></div>
+      <div class="rev"><div class="stars">★★★★★</div><p>Лучший брусничный раф в городе. Утром тихо, можно спокойно поработать с ноутбуком.</p><b>Илья</b> <span>· 2ГИС</span></div>
+      <div class="rev"><div class="stars">★★★★★</div><p>Заказывали пироги на день рождения — всё вовремя и очень вкусно, гости спрашивали, где брали.</p><b>Ольга</b> <span>· ВКонтакте</span></div>
+    </div>
+    <p class="note">В демо отзывы примерные. На рабочем сайте здесь будут ваши настоящие отзывы с Яндекс Карт и 2ГИС.</p>
+  </div>
+</section>
+
+<section id="book">
+  <div class="wrap">
+    <div class="book reveal">
+      <div>
+        <p class="eyebrow">Бронь стола</p>
+        <h2 style="font-size:clamp(34px,7vw,50px);margin:8px 0 12px">Оставьте заявку — перезвоним за 10 минут</h2>
+        <p>Можно забронировать стол, заказать пироги к празднику или спросить что угодно.</p>
+      </div>
+      <form id="form" novalidate>
+        <label>Имя<input name="name" required placeholder="Как к вам обращаться"></label>
+        <label>Телефон<input name="phone" type="tel" required placeholder="+7 900 000-00-00" inputmode="tel"></label>
+        <div class="row2">
+          <label>Дата<input name="date" type="date" required></label>
+          <label>Время<input name="time" type="time" required value="12:00"></label>
+        </div>
+        <label>Гостей<select name="guests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5–8</option><option>Больше 8</option></select></label>
+        <button class="btn btn-berry" type="submit">Отправить заявку</button>
+        <div class="ok" id="ok" role="status"><b>Заявка принята!</b><br>Администратор перезвонит вам в течение 10 минут.<br><small style="opacity:.7">На рабочем сайте заявка сразу приходит владельцу в Telegram.</small></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="contacts">
+  <div class="wrap contacts">
+    <div class="reveal">
+      <p class="eyebrow">Контакты</p>
+      <h2 style="font-size:clamp(34px,7vw,54px);margin:8px 0 24px">Как нас найти</h2>
+      <div class="c-list">
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><p>Петрозаводск, ул. Примерная, 7<span>вход со двора, второй подъезд</span></p></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><p>Каждый день 7:00–21:00<span>по пятницам и субботам до 22:00</span></p></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><p><a href="tel:+79000000000" style="text-decoration:none">+7 900 000-00-00</a><span>звонки и WhatsApp</span></p></div>
+      </div>
+      <div class="socials" style="margin-top:20px"><a href="#" aria-label="ВКонтакте">VK</a><a href="#" aria-label="Telegram">TG</a></div>
+    </div>
+    <div class="map reveal">
+      <iframe src="https://yandex.ru/map-widget/v1/?ll=34.3469%2C61.7895&z=14" title="Карта: Петрозаводск" loading="lazy" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Пекарня-кофейня «Калитка», Петрозаводск. Демо-макет: заведение вымышленное, фото — Unsplash.</div>
+</footer>
+
+<nav class="dock" aria-label="Быстрые действия">
+  <a href="tel:+79000000000"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Позвонить</a>
+  <a href="https://yandex.ru/maps/?text=Петрозаводск" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Маршрут</a>
+  <a class="main" href="#book"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Бронь</a>
+</nav>
+
+<script>
+// шапка становится плотной при прокрутке
+const header = document.querySelector('header');
+const onScroll = () => header.classList.toggle('solid', scrollY > 40);
+addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+// мобильное меню
+const burger = document.querySelector('.burger'), drawer = document.getElementById('drawer');
+burger.addEventListener('click', () => {
+  const open = drawer.classList.toggle('open');
+  burger.setAttribute('aria-expanded', open);
+  header.classList.add('solid');
+});
+drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { drawer.classList.remove('open'); burger.setAttribute('aria-expanded', false); }));
+
+// открыто / закрыто по часам работы
+(() => {
+  const d = new Date(), h = d.getHours() + d.getMinutes() / 60, day = d.getDay();
+  const close = (day === 5 || day === 6) ? 22 : 21;
+  const open = h >= 7 && h < close;
+  document.getElementById('dot').classList.toggle('off', !open);
+  document.getElementById('open-text').textContent = open ? `Открыто до ${close}:00` : 'Закрыто · откроемся в 7:00';
+})();
+
+// ===== МЕНЮ ИЗ ГУГЛ-ТАБЛИЦЫ =====
+// Вставь сюда ссылку «Опубликовать в интернете → CSV». Пусто = берём меню, вшитое ниже.
+const SHEET_CSV_URL = '';
+const DEFAULT_CSV = `раздел,название,описание,цена,метка,в наличии,фото
+Выпечка,Калитка с картофелем,"ржаное тесто, картофельное пюре, сливочное масло",90,хит,да,
+Выпечка,Калитка с пшённой кашей,по классическому карельскому рецепту,90,,да,
+Выпечка,Круассан классический,сливочное масло 82%,150,,да,
+Выпечка,Синнабон с брусникой,,190,новинка,да,
+Выпечка,Пирог с лососем,порция 150 г,260,,да,
+Завтраки,Северный завтрак,"лосось, яйца, авокадо, ржаной хлеб",520,,да,img/salmon.jpg
+Завтраки,Сырники со сметаной и брусникой,,360,,да,
+Завтраки,Овсяная каша на молоке,с ягодами или мёдом,240,,да,
+Завтраки,Тост с яйцом и томатами,,340,,да,img/toast.jpg
+Кофе,Эспрессо,,140,,да,
+Кофе,Капучино,250 / 350 мл,210 / 250,,да,
+Кофе,Латте,250 / 350 мл,220 / 260,,да,
+Кофе,Раф брусничный,,290,хит,да,
+Кофе,Фильтр-кофе,,180,,да,
+Кофе,Латте + круассан,комбо до 12:00,290,,да,img/latte.jpg
+Кофе,Капучино + чизкейк,,410,,да,img/cake.jpg
+Чай и другое,Иван-чай карельский,чайник 500 мл,250,,да,
+Чай и другое,Морс из клюквы,300 мл,160,,да,
+Чай и другое,Какао с маршмеллоу,,230,,нет,
+`;
+
+function parseCSV(text) {
+  const rows = []; let row = [], cell = '', q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) {
+      if (c === '"' && text[i + 1] === '"') { cell += '"'; i++; }
+      else if (c === '"') q = false;
+      else cell += c;
+    } else if (c === '"') q = true;
+    else if (c === ',') { row.push(cell); cell = ''; }
+    else if (c === '\n' || c === '\r') {
+      if (c === '\r' && text[i + 1] === '\n') i++;
+      row.push(cell); rows.push(row); row = []; cell = '';
+    } else cell += c;
+  }
+  if (cell || row.length) { row.push(cell); rows.push(row); }
+  return rows.filter(r => r.some(x => x.trim()));
+}
+const esc = t => String(t).replace(/[&<>"]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]));
+const price = p => { p = p.trim(); return p && !/₽|руб/i.test(p) ? p + ' ₽' : p; };
+
+function renderMenu(text) {
+  const [head, ...rows] = parseCSV(text);
+  const k = n => head.findIndex(h => h.trim().toLowerCase().startsWith(n));
+  const I = { sec: k('раздел'), name: k('назв'), desc: k('опис'), price: k('цен'), tag: k('метк'), stock: k('в нал'), photo: k('фото') };
+  const items = rows.map(r => ({
+    sec: (r[I.sec] || '').trim(), name: (r[I.name] || '').trim(), desc: (r[I.desc] || '').trim(),
+    price: price(r[I.price] || ''), tag: (r[I.tag] || '').trim(),
+    out: /^(нет|0|закончил)/i.test((r[I.stock] || '').trim()), photo: (r[I.photo] || '').trim(),
+  })).filter(x => x.sec && x.name);
+  if (!items.length) throw new Error('пустое меню');
+
+  document.getElementById('hits').innerHTML = items.filter(x => x.photo && !x.out).slice(0, 4).map(x =>
+    `<div class="hit"><img src="${esc(x.photo)}" alt="${esc(x.name)}" loading="lazy"><div><b>${esc(x.name)}</b><span>${esc(x.price)}</span></div></div>`).join('');
+
+  const secs = [...new Set(items.map(x => x.sec))];
+  document.getElementById('tabs').innerHTML = secs.map((s, i) =>
+    `<button role="tab" aria-selected="${i === 0}" data-t="m${i}">${esc(s)}</button>`).join('');
+  document.getElementById('lists').innerHTML = secs.map((s, i) => `<ul class="menu-list${i === 0 ? ' on' : ''}" id="m${i}">` +
+    items.filter(x => x.sec === s).map(x => `<li class="${x.out ? 'out' : ''}"><span class="n">${esc(x.name)}` +
+      (x.out ? '<span class="tag">закончилось</span>' : x.tag ? `<span class="tag">${esc(x.tag)}</span>` : '') +
+      (x.desc ? `<small>${esc(x.desc)}</small>` : '') +
+      `</span><span class="fill"></span><span class="p">${esc(x.price)}</span></li>`).join('') + '</ul>').join('');
+
+  document.querySelectorAll('#tabs button').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('#tabs button').forEach(x => x.setAttribute('aria-selected', x === b));
+    document.querySelectorAll('.menu-list').forEach(l => l.classList.toggle('on', l.id === b.dataset.t));
+  }));
+}
+
+(async () => {
+  renderMenu(DEFAULT_CSV); // сразу показываем вшитое меню, чтобы не было пустоты
+  if (!SHEET_CSV_URL) return;
+  try {
+    const r = await fetch(SHEET_CSV_URL + (SHEET_CSV_URL.includes('?') ? '&' : '?') + 't=' + Date.now());
+    if (!r.ok) throw new Error(r.status);
+    renderMenu(await r.text());
+  } catch (e) { console.warn('Меню из таблицы не загрузилось, показываю вшитое:', e); }
+})();
+
+// форма брони (в демо без отправки)
+const form = document.getElementById('form');
+form.date.valueAsDate = new Date();
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  if (!form.name.value.trim() || form.phone.value.replace(/\D/g, '').length < 10) {
+    (form.name.value.trim() ? form.phone : form.name).focus();
+    return;
+  }
+  document.getElementById('ok').classList.add('show');
+  form.querySelector('button').disabled = true;
+});
+
+// плавное появление блоков
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
