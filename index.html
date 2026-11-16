@@ -142,6 +142,8 @@ input,select{min-height:50px;border-radius:12px;border:1px solid rgba(255,255,25
 input::placeholder{color:rgba(255,255,255,.55)}
 select option{color:#222}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.book>*,form label{min-width:0}
+input,select{width:100%;min-width:0}
 .ok{display:none;background:rgba(255,255,255,.1);border-radius:12px;padding:16px;margin-top:6px}
 .ok.show{display:block}
 
@@ -205,6 +207,8 @@ label.consent{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-h
 label.consent input{min-height:0;width:20px;height:20px;flex:none;margin-top:1px;accent-color:var(--berry);padding:0}
 label.consent a{color:inherit}
 label.consent.err{color:#E5484D}
+.book label.consent{color:rgba(255,255,255,.78)}
+.book label.consent.err{color:#FFB4A8}
 </style>
 </head>
 <body>
@@ -475,7 +479,8 @@ function renderMenu(text) {
 
 // форма брони (в демо без отправки)
 const form = document.getElementById('form');
-form.date.valueAsDate = new Date();
+const t0 = new Date(); form.date.value = `${t0.getFullYear()}-${String(t0.getMonth() + 1).padStart(2, '0')}-${String(t0.getDate()).padStart(2, '0')}`;
+form.date.min = form.date.value;
 form.consent.addEventListener('change', e => e.target.closest('label').classList.remove('err'));
 form.addEventListener('submit', e => {
   e.preventDefault();
@@ -484,6 +489,7 @@ form.addEventListener('submit', e => {
     return;
   }
   if (!form.consent.checked) { form.consent.closest('label').classList.add('err'); return form.consent.focus(); }
+  form.consent.closest('label').classList.remove('err');
   document.getElementById('ok').classList.add('show');
   form.querySelector('button').disabled = true;
 });
